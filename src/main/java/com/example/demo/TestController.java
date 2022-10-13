@@ -11,7 +11,7 @@ public class TestController {
 	public String test() {
 		
 		
-		return "test";
+		return "main";
 	}
 	
 }

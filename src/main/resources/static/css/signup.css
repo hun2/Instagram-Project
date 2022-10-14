@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
 .main {
-	display: flex;
     align-content: center;
     margin : 0 auto;
     margin-left : 100px auto;
@@ -13,17 +12,17 @@
 
 .container {
     width: 350px;
-    height: 400px;
+    height: 550px;
     margin : 10px auto;
     margin-left : 100px auto;
     margin-right : 100px auto;
-    margin-top : 80px;
     display: flex;
     flex-direction: column;
     align-content: center;
     flex-wrap: wrap;
     background-color: #fff;
     border: 1px solid #DBDBDB;
+    justify-content: center;
 }
 
 .footer {
@@ -46,7 +45,7 @@
 img.logo_instagram {
     align-self: center;
     width: 175px;
-    margin: 35px 0;
+    margin: 10px; 
 }
 .input_login {
     width: 270px;
@@ -127,4 +126,14 @@ a {
 }
 .button_forgot:hover {
     cursor: pointer;
+}
+
+
+.askspan {
+	font-size : 14px;
+	font-weight: bold;
+}
+
+.bundle {
+	margin-bottom: 10px;
 }

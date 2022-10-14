@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Instagram</title>
-    <link href="/css/join.css" rel="stylesheet" type="text/css" />
+    <link href="/css/signin.css" rel="stylesheet" type="text/css" />
     <link href="/css/common.css" rel="stylesheet" type="text/css" />
     
     <!-- favicon -->
@@ -44,7 +44,7 @@
 		    </div>
 		    
 		    <div class="footer">
-		    		<span>계정이 없으신가요? </span> <a href="#"> 가입하기 </a>
+		    		<span>계정이 없으신가요? </span> <a href="/main/sign_up_view"> 가입하기 </a>
 		    </div>
 	    </div>
 	</div>

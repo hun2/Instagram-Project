@@ -5,9 +5,11 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-@MapperScan(basePackages="com.example.*")  // interface(mapper)가 있는 패키지 경로
+@MapperScan(basePackages="com.example.demo.*")  // interface(mapper)가 있는 패키지 경로
+@Configuration
 public class DatabaseConfig {
 
 

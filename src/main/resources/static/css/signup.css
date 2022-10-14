@@ -137,3 +137,16 @@ a {
 .bundle {
 	margin-bottom: 10px;
 }
+
+
+.deletedisplay {
+	display: none;
+}
+.red {
+	font-size: 10px;
+	color : red;
+}
+.green {
+	font-size: 12px;
+	color : green;
+}

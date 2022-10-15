@@ -20,6 +20,8 @@ public class MainController {
 	@Autowired
 	private UserBO userBo;
 	
+	
+	//로그인 메인 페이지 접속
 	@RequestMapping("/main/sign_in_view")
 	public String sign_in() {
 		
@@ -28,14 +30,14 @@ public class MainController {
 	}
 	
 	
-	
+	//회원가입 접속
 	@GetMapping("/main/sign_up_view")
 	public String sign_up() {
 		
 		return "main_signup";
 	}
 	
-
+	//회원가입 정보생성
 	@PostMapping("/main/add_user")
 	@ResponseBody
 	public String add_user(User user) {
@@ -45,6 +47,7 @@ public class MainController {
 		return "성공";
 	}
 	
+	//회원가입시 id 중복검사 확인
 	@GetMapping("/main/get_id_user")
 	@ResponseBody
 	public Map<String, Boolean> get_id_user(@RequestParam("uid")String uid) {
@@ -56,4 +59,15 @@ public class MainController {
 		return result;
 	}
 	
+	//로그인시 id 및 password 확인
+	@GetMapping("/main/sign_success")
+	@ResponseBody
+	public Map<String, Boolean> get_loign_user(@RequestParam("uid")String uid, @RequestParam("pwd") String pwd) {
+		
+		Map<String, Boolean> result2 = new HashMap<>();
+		Boolean checkingIdPwd = userBo.get_loign_user(uid, pwd);
+		result2.put("checkingIdPwd", checkingIdPwd);
+		
+		return result2;
+	}
 }

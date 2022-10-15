@@ -24,6 +24,13 @@ public class UserBO {
 		
 		return userDao.select_id_user(uid);
 	}
+	
+	
+	//로그인 시 id 및 password 값 select 하기
+	public Boolean get_loign_user(String uid, String pwd) {
+		
+		return userDao.select_loign_user(uid, pwd);
+	}
 }
 
 

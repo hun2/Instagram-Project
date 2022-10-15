@@ -97,7 +97,14 @@
  	 	}
  	 	
  	 	//닉네임은 null 허용이기에 유효성이 없어도 됨.
- 		//아이디 유효성검사는 마지막에 하도록(ajax 중복검사 통신 후 hassclass있는경우 반응못하게.)
+ 		//아이디 유효성 검사 조건 합당하면 ajax 진행
+ 		if($(".available").hasClass("deletedisplay")) {
+ 			
+ 			alert("아이디를 확인하세요.");
+ 			$(".uid").focus();
+ 			return false;
+ 		}
+ 		
  		//회원 가입 data 
  		$.ajax({
  			//request 

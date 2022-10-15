@@ -34,4 +34,15 @@
  		WHERE
  			uid = #{uid}
  	</select>
+ 
+ 	<select id="select_loign_user" resultType="Boolean" parameterType="map">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			user
+ 		WHERE
+ 			uid = #{uid}
+ 		and
+ 			pwd = #{pwd}
+ 	</select>
  </mapper>

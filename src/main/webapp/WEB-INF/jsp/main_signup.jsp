@@ -49,10 +49,10 @@
 				      <span class="askspan">닉네임: </span>
 				      <input type="text" class="input_login" name="nickName" id="nickName" placeholder="닉네임">
 				</div>
-			    <a href="#none"><button id="btn_login" >로그인</button></a>
+			    <a href="#none"><button id="btn_login" >회원가입</button></a>
 		    </div>
 		    <div class="footer">
-		    	<span>계정이 있으신가요? </span> <a href="/main/sign_in_view"> 로그인 하기 </a>
+		    	<span>계정이 있으신가요? </span> <a href="/main/sign_in_view">  로그인 하기 </a>
 		    </div>
 		</div>
 </body>

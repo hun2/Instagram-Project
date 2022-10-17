@@ -35,7 +35,6 @@
     </div>
 </nav>
 <section>
-	
 	<header class="profileheader">
 		<div class="profileleft">
 			<div class="profile-pic"><img src="/img/park.jpg" alt=""></div>
@@ -56,7 +55,6 @@
 		</div>
 	</header>
 	<aside class="bodycontent">
-		
 		<div class="bodycontainer"> 
 			<div class="item">
 				<img src="/img/iu.jpg" class="bodyimg">
@@ -71,14 +69,96 @@
 				<img src="/img/iu.jpg" class="bodyimg">
 			</div>
 		</div>
-		
-		
 	</aside>
-
-
 </section>
 
+<!--상단 바 사진추가  -->
+<div class="modal">
+      <div class="modal_body">
+      	  <span id="upload">게시글 업로드</span>
+      	  <div class="uploadinfo">
+            <div class="uploadprofile-pic"><img src="/img/park.jpg" alt=""></div>
+            <p class="uploadusername">text</p>
+          </div>
+      	  <div class="uploadimg">
+	      	<img src="/img/no.png" id="uploadimg">
+	      </div>
+	      <div class="uploadfile">
+		      <input type="file" id="uploadbutton" value="파일선택">
+	      </div>      
+	      <textarea class="input_login" id="content"></textarea>
+	      <div class="addbutton">
+	      <a href="#none"><button id="btn_login" >게시글 추가</button></a>
+	      </div>
+      </div>
+</div>
+
+<!--개인정보 수정  -->
+<div class="modal2">
+      <div class="modal_body">
+      	  <span id="upload">개인정보수정</span>
+      	  <div class="uploadinfo">
+            <div class="uploadprofile-pic"><img src="/img/park.jpg" alt=""></div>
+            <p class="uploadusername">text</p>
+          </div>
+      	  <div class="uploadimg">
+	      	<img src="/img/no.png" id="uploadimg">
+	      </div>
+	      <div class="uploadfile">
+		      <input type="file" id="uploadbutton" value="파일선택">
+	      </div>
+	      <div>닉네임</div>      
+	      <textarea class="input_login" id="content"></textarea>
+	      <div class="addbutton">
+	      <a href="#none"><button id="btn_login" >개인정보 수정</button></a>
+	      </div>
+      </div>
+</div>
+
+
+</body>
+<script type="text/javascript">
+
+	const body = document.querySelector('body');
+	const modal = document.querySelector('.modal');
+	const modal2 = document.querySelector('.modal2');
+	const addPopup = document.querySelector('.add');
+	const icon2 = document.querySelector('.icon2');
+	
+	addPopup.addEventListener('click', () => {
+		modal.classList.toggle('show');
+		 if (modal.classList.contains('show')) {
+	          body.style.overflow = 'hidden';
+	     }
+	});
+	icon2.addEventListener('click', () => {
+		modal2.classList.toggle('show');
+		 if (modal2.classList.contains('show')) {
+	          body.style.overflow = 'hidden';
+	     }
+	});
+	modal.addEventListener('click', (event) => {
+	    if (event.target === modal) {
+	      modal.classList.toggle('show');
+	    }
+	    if (!modal.classList.contains('show')) {
+	        body.style.overflow = 'auto';
+	     }
+	});
+	
+	modal2.addEventListener('click', (event) => {
+	    if (event.target === modal2) {
+	      modal2.classList.toggle('show');
+	    }
+	    if (!modal2.classList.contains('show')) {
+	        body.style.overflow = 'auto';
+	     }
+	});
+	
+	
+	
 
 
 
+</script>
 </html>

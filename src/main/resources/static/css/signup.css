@@ -77,18 +77,7 @@ img.logo_instagram {
     font-size: 14px;
     font-weight: 600;
 }
-#btn_login:disabled {
-    background-color: #B9DFFC;
-}
-#btn_login:disabled:hover {
-    cursor: default;
-}
-#btn_login:enabled:hover {
-    cursor: pointer;
-}
-#btn_login:focus {
-    outline: none;
-}
+
 
 .login_horizon {
 	

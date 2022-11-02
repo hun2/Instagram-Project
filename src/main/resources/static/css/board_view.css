@@ -69,6 +69,7 @@ body{
 .nav-items{
     height: 22px;
     position: relative;
+    display: flex;
 }
 
 .icon{
@@ -79,9 +80,39 @@ body{
     display: inline-block;
 }
 
+.dropdown{
+	display : inline-block;
+	position: relative;
+}
+
+#profile{
+	cursor: pointer;
+}
+.dropdown-submenu {
+	position: absolute;
+	top: 37px; left: 0;
+	background-color: #fff;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	min-width: 100px;
+	display: none;
+}
+
+.dropdown-submenu a {
+	display : block;
+	padding: 10px 3px;
+	text-align: left;
+	text-decoration: none;
+	color : black;
+}
+.dropdown-submenu a:hover {
+	background-color: #ececec;
+}
 
 
 /* 게시글 */
+
+
+
 
 .wrapper{
     width: 70%;
@@ -89,6 +120,8 @@ body{
     display: grid;
     grid-template-columns: 60% 40%;
     grid-gap: 30px;
+	max-height: 1000px;
+	/* overflow: hidden;  페이징을 배우면 이 기능을 살리자.*/
 }
 
 .main{
@@ -98,6 +131,9 @@ body{
     justify-content: center;
 }
 
+.left-col {
+	max-height: 1000px;
+}
 .profile-pic{
     width: 70px;
     height: 70px;
@@ -169,6 +205,33 @@ body{
     border: none;
 }
 
+.dropdown2 {
+	display : inline-block;
+	position: relative;
+}
+.dropdown-submenu2{
+	position: absolute;
+	top: -24px; left: 38px;
+	background-color: #fff;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	min-width: 100px;
+	display: none;
+}
+
+.dropdown-submenu2 a {
+	display : block;
+	padding: 10px 3px;
+	text-align: left;
+	text-decoration: none;
+	color : black;
+}
+.dropdown-submenu2 a:hover {
+	background-color: #ececec;
+}
+
+
+
+
 .post-image{
     width: 100%;
     height: 500px;
@@ -177,7 +240,26 @@ body{
 
 .post-content{
     width: 100%;
-    padding: 20px;
+    padding: 20px 20px 0 20px;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.post-content-comment{
+	height: 30px;
+	display : flex;
+	justify-content: center;
+	align-items: center;
+	padding-left: 20px;
+}
+
+.content-commnet{
+	border: none;
+	width: 100%;
+}
+.push {
+	color: rgb(0, 162, 255);
+	display: block;
+	width: 40px;
 }
 
 .likes{
@@ -195,6 +277,19 @@ body{
     margin-right: 10px;
 }
 
+.description_add {
+	color : #8E8E8E;
+	
+}
+
+.description_comment {
+	display: none;
+}
+
+.description_comment span {
+	font-weight: bold;
+	
+}
 
 .reaction-wrapper{
     width: 100%;
@@ -211,8 +306,11 @@ body{
 }
 
 .reaction-wrapper .icon.save{
-    margin-left: auto;
+    margin-left: 340px;
 }
+
+
+
 
 
 
@@ -331,7 +429,7 @@ body{
 
 .modal_body {
   position: absolute;
-  top: 25%;
+  top: 35%;
   left: 50%;
   width: 400px;
   height: 620px;
@@ -398,6 +496,7 @@ body{
 .uploadimg{
 	text-align: center;
 	margin-bottom: 10px;
+	
 }
 .uploadfile {
 	margin: 10px 20px;
@@ -429,7 +528,16 @@ body{
     border: 1px solid #8a8a8a;
     outline: none;
 }
-#btn_login {
+
+#file {
+	margin-left: 13px;
+}
+#uploadimg {
+	width: 270px;
+	height: 200px;
+}
+
+#btn_addlist {
     width: 268px;
     height: 30px;
     margin: 13px auto;

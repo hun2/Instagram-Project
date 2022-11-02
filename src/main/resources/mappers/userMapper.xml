@@ -2,26 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.example.demo.dao.UserDAO">
+ 	<select id="selectUserAll" parameterType="com.example.demo.model.User" resultType="com.example.demo.model.User">
+ 		SELECT
+ 			*
+ 		FROM
+ 			`user`
+ 		WHERE
+ 			`uid` NOT IN (SELECT userId_followed from `follow` where userId_follower = #{uid})
+ 		AND
+ 			`uid` != #{uid}
+ 		LIMIT 5
+ 	</select>
  
- 	<insert id="insertUser" parameterType="com.example.demo.model.User">
- 		
+ 
+ 	 <insert id="insertUser" parameterType="com.example.demo.model.User" >
  		INSERT INTO user
  		(
- 			`id`
-			,`uid`
+			`uid`
 			,`pwd`
 			,`email`
 			,`nickName`
+			,`profilePhoto`
 			,`createdAt`
 			,`updatedAt`
  		)
  		VALUES
  		(
- 			#{id}
- 			,#{uid}
+ 			#{uid}
  			,#{pwd}
  			,#{email}
  			,#{nickName}
+ 			,#{profilePhoto}
  			, NOW()
  			, NOW()
  		)
@@ -34,15 +45,49 @@
  		WHERE
  			uid = #{uid}
  	</select>
- 
- 	<select id="select_loign_user" resultType="Boolean" parameterType="map">
+ 	<select id="select_loign_user" resultType="com.example.demo.model.User" parameterType="com.example.demo.model.User">
  		SELECT
- 			COUNT(*)
+ 			`id`
+			,`uid`
+			,`pwd`
+			,`email`
+			,`nickName`
+			,`profilePhoto`
+			,`createdAt`
+			,`updatedAt`
  		FROM
  			user
  		WHERE
  			uid = #{uid}
  		and
  			pwd = #{pwd}
+ 	</select>
+ 	<select id="selectUserById" resultType="com.example.demo.model.User" parameterType="String">
+ 		SELECT
+ 			`id`
+			,`uid`
+			,`pwd`
+			,`email`
+			,`nickName`
+			,`profilePhoto`
+			,`createdAt`
+			,`updatedAt`
+ 		FROM
+ 			user
+ 		WHERE
+ 			`uid` = #{uid}
+ 	</select>
+ 	<select id="getUserList" resultType="com.example.demo.model.User">
+ 		SELECT
+ 			`id`
+			,`uid`
+			,`pwd`
+			,`email`
+			,`nickName`
+			,`profilePhoto`
+			,`createdAt`
+			,`updatedAt`
+ 		FROM
+ 			user
  	</select>
  </mapper>

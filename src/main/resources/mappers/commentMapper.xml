@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.example.demo.dao.CommentDAO">
+ 	
+ 	
+ 	<!--조건 쿼리 -->
+ 	<!-- <select id="selectLikeCountByBoardIdORUserId" parameterType="map" resultType="int">
+ 		SELECT 
+ 			COUNT(1)
+ 		FROM
+ 			`like`
+ 		WHERE
+ 			`boardId` = #{boardId}
+ 			<if test="userId != null">
+ 			AND `userId` = #{userId}
+ 			</if>
+ 	</select> -->
+ 
+ 	
+ 	<insert id="insertComment" parameterType="map" >
+ 		INSERT INTO `comment`
+ 		(
+			`boardId`
+			,`userId`
+			,`comment`
+			,`createdAt`
+			,`updatedAt`
+ 		
+ 		)
+ 		VALUES
+ 		(
+ 			#{boardId}
+ 			,#{uid}
+ 			,#{comment}
+ 			, NOW()
+ 			, NOW()
+ 		
+ 		)
+ 	</insert>
+ 
+ 	<select id="selectCommentListByBoardId" parameterType="int" resultType="com.example.demo.model.Comment">
+ 	
+ 		SELECT
+ 			`commentId`
+			,`boardId`
+			,`userId`
+			,`comment`
+			,`createdAt`
+			,`updatedAt`
+ 		FROM
+ 			`comment`
+ 		WHERE
+ 			`boardId` = #{boardId}
+ 	</select>
+ 	<select id="selectCommentListCountByBoardId" parameterType="int" resultType="int" >
+ 		SELECT
+ 			COUNT(1)
+ 		FROM
+ 			`comment`
+ 		WHERE
+ 			`boardId` = #{boardId}
+ 	
+ 	</select>
+ </mapper>

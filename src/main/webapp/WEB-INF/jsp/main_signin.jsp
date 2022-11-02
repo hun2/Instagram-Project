@@ -43,7 +43,7 @@
 		    </div>
 		    
 		    <div class="footer">
-		    		<span>계정이 없으신가요? </span> <a href="/main/sign_up_view"> 가입하기 </a>
+		    		<span>계정이 없으신가요? </span> <a href="/main/sign-up-view"> 가입하기 </a>
 		    </div>
 	    </div>
 	</div>
@@ -119,20 +119,21 @@
 		$.ajax({
 			//response
 			type : "GET"
-			, url : "/main/sign_success"
+			, url : "/main/sign-success"
 			, data : {"uid" : uid, "pwd" : pwd}
 			//request
-			, success : function(data) {
-				//중복일때 => 즉 아이디랑 비밀번호가 맞음 board 페이지로 이동
-				if (data.checkingIdPwd) {
+			, success : function(result) {
+				//중복일때 => 즉 id 또는 비밀번호가 맞지않음 
+				if (result == "") {
 					
-					alert("김기훈님은 저희와 함께 갑시다!!!")
-					location.href="/main/board_view"
-				}
-				//중복이 아닐때 => 즉 id 또는 비밀번호가 맞지않음
-				else {
 					alert("아이디 또는 비밀번호가 맞지 않습니다");
 					return false;
+					
+				}
+				//중복이 아닐때 => 즉 아이디랑 비밀번호가 맞음 board 페이지로 이동
+				else {
+					alert("김기훈님은 저희와 함께 갑시다!!!")
+					location.href="/main/board-view"
 				}
 			}
 			, error : function(e) {

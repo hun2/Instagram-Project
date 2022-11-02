@@ -49,10 +49,14 @@
 				      <span class="askspan">닉네임: </span>
 				      <input type="text" class="input_login" name="nickName" id="nickName" placeholder="닉네임">
 				</div>
+			    <div class="bundle">
+				      <span class="askspan">프로필 사진: </span> <br>
+				      <input type="file" class="" name="file" id="file">
+				</div>
 			    <a href="#none"><button id="btn_login" >회원가입</button></a>
 		    </div>
 		    <div class="footer">
-		    	<span>계정이 있으신가요? </span> <a href="/main/sign_in_view">  로그인 하기 </a>
+		    	<span>계정이 있으신가요? </span> <a href="/main/sign-in-view">  로그인 하기 </a>
 		    </div>
 		</div>
 </body>
@@ -60,13 +64,14 @@
  <script>
  	$('#btn_login').on('click', function(){
 		
- 		const uid = $('#uid').val().trim();
- 	 	const pwd = $('#pwd').val().trim();
- 	 	const repwd = $('#repwd').val().trim();
- 	 	const email = $('#email').val().trim();
- 	 	const nickName = $('#nickName').val().trim();
+ 		var uid = $('#uid').val().trim();
+ 	 	var pwd = $('#pwd').val().trim();
+ 	 	var repwd = $('#repwd').val().trim();
+ 	 	var email = $('#email').val().trim();
+ 	 	var nickName = $('#nickName').val().trim();
+ 		var file = $('#file').val();
  		
- 	 	//비밀번호 검사
+ 	 	 //비밀번호 검사
  	 	if ( pwd.length == 0) {
  	 		
  	 		alert("비밀번호를 확인하세요");
@@ -103,25 +108,60 @@
  			alert("아이디를 확인하세요.");
  			$(".uid").focus();
  			return false;
- 		}
+ 		} 
+ 	 	
+ 	 	//파일 업로드 된 경우 확장자 찾기
+ 	 	if ( file != "") {
+ 	 		
+ 	 		//잘려있는 배열중 가장 마지막 배열
+ 	 		file.split('.').pop();
+ 	 		//마지막 배열을 소문자로 강제 변환
+ 	 		const ext = file.split('.').pop().toLowerCase();
+ 	 		
+ 	 		//배열안에 포함된게 없다면 -1로 찍힘. 
+ 	 		if ( $.inArray(ext, ['gif', 'jpg', 'jpeg', 'png']) == -1) { 
+				alert("gif, jpg, jpeg, png 파일만 가능합니다");
+			   	$('#file').val(''); // 업로드 된 파일을 비워준다.
+				return false;
+			 } 
+ 	 	}
  		
- 		//회원 가입 data 
+ 		//회원가입 formData 방법
+ 		var formData = new FormData();
+ 		formData.append('uid', uid);
+ 		formData.append('pwd', pwd);
+ 		formData.append('email', email);
+ 		formData.append('nickName', nickName);
+ 		formData.append('file', $('#file')[0].files[0]);
+ 		
+ 		
  		$.ajax({
- 			//request 
- 			type : "POST"
- 			,url : "/main/add_user"
- 			,data : {"uid" : uid, "pwd" : pwd, "email" : email, "nickName" : nickName}
- 			//response
- 			,success : function(data) {
- 				if(data == "성공") {
- 					alert("회원가입 성공하였습니다.")
- 	 				location.href = "/main/sign_in_view";
- 				}
- 			}
+ 			type : 'POST'
+ 			, url : '/main/user'
+ 			, data : formData
+ 			, enctype : "multipart/form-data"  // 파일 업로드를 위한 필수 설정
+			, processData : false // 파일 업로드를 위한 필수 설정
+			, contentType : false
+ 			
+			
+			//요청 후 
+			, success : function(result) {
+				
+				if(result.code ==  100) {
+					alert("회원가입 성공하였습니다.")
+ 	 				location.href = "/main/sign-in-view";
+				} else {
+					alert(result.errorMessage);
+				}
+			}
  			, error : function(e) {
  				alert("에러")
  			}
  		})
+ 	 	 
+ 	 	
+ 	 	
+ 		
  	})	 
  
  	
@@ -153,7 +193,7 @@
 	$.ajax({
 			//request
 			type : "GET"
-			,url : "/main/get_id_user"
+			,url : "/main/id-user"
 			, data : {"uid" : uid}
 			//response
 			,success : function(data) {

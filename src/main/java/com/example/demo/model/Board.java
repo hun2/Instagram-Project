@@ -9,23 +9,14 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class User {
+public class Board {
 
-	private int id;
-	private String uid;
-	private String pwd;
-	private String email;
-	private String nickName;
-	/* private MultipartFile file; */
-	private String profilePhoto;
+	
+	private int boardId;
+	private String userId;
+	private String boardImage;
+	private String content;
 	private Date createdAt;
 	private Date updatedAt;
-	
-	
-	
-	
-	
-	
-	
 	
 }

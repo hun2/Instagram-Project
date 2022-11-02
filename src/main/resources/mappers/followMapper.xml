@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.example.demo.dao.FollowDAO">
+
+	 <insert id="insertFollow" parameterType="com.example.demo.model.Follow" >
+ 		INSERT INTO follow
+ 		(
+			`userId_follower`
+			,`userId_followed`
+			,`createdAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{userId_follower}
+ 			,#{userId_followed}
+ 			, NOW()
+ 		)
+ 	</insert>
+	
+	
+	<delete id="deleteFollow" parameterType="com.example.demo.model.Follow" >
+		DELETE FROM
+			follow
+		WHERE
+			`userId_follower` = #{userId_follower}
+		AND
+			`userId_followed` = #{userId_followed}
+	</delete>
+	<select id="CountFollow" resultType="int" parameterType="com.example.demo.model.Follow">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			follow
+ 		WHERE
+ 			`userId_follower` = #{userId_follower}
+ 	</select>
+ 	<select id="CountFollowed" resultType="int" parameterType="com.example.demo.model.Follow">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			follow
+ 		WHERE
+ 			`userId_followed` = #{userId_followed}
+ 	</select>
+ 	<select id="selectFollowByFollowId" resultType="int" parameterType="com.example.demo.model.Follow">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			follow
+ 		WHERE
+ 			`userId_follower` = #{userId_follower}
+ 		AND
+ 			`userId_followed` = #{userId_followed}
+ 	</select>
+ </mapper>

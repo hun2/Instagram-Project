@@ -62,4 +62,20 @@
  			`boardId` = #{boardId}
  	
  	</select>
+ 	
+ 	<select id="selectMyCommentListByBoardId" parameterType="com.example.demo.model.Board" resultType="com.example.demo.model.Comment">
+ 	
+ 		SELECT
+ 			`commentId`
+			,`boardId`
+			,`userId`
+			,`comment`
+			,`createdAt`
+			,`updatedAt`
+ 		FROM
+ 			`comment`
+ 		WHERE
+ 			`boardId` = #{boardId}
+ 	</select>
+ 	
  </mapper>

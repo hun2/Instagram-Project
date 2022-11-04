@@ -45,6 +45,21 @@
  		WHERE
  			userId = #{userId}
  	</select>
+ 	<select id="selectListByUserIdAndBoardId" resultType="com.example.demo.model.Board" parameterType="com.example.demo.model.Board">
+ 		SELECT
+ 			`boardId`
+			,`userId`
+			,`boardImage`
+			,`content`
+			,`createdAt`
+			,`updatedAt`
+ 		FROM
+ 			board
+ 		WHERE
+ 			userId = #{userId}
+ 		AND
+ 			boardId = #{boardId}
+ 	</select>
  	<select id="selectListCountByUserId" resultType="int" parameterType="com.example.demo.model.Board">
  		SELECT
  			COUNT(*)

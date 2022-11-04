@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.CommentDAO;
+import com.example.demo.model.Board;
 import com.example.demo.model.Comment;
 import com.example.demo.model.CommentView;
 import com.example.demo.model.User;
@@ -36,6 +37,10 @@ public class CommentBO {
 	public List<Comment> getCommentListByBoardId(int boardId) {
 			
 		return commentDao.selectCommentListByBoardId(boardId);
+	}
+	
+	public List<Comment> getMyCommentListByBoardId(Board board) {
+		return commentDao.selectMyCommentListByBoardId(board);
 	}
 	
 	

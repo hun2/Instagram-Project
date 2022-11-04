@@ -44,7 +44,13 @@ public class BoardBO {
 		return boardDao.selectList();
 
 	}
-
+	
+	//마이페이지 게시글 누르면 가져오는것
+	public List<Board> getListByUserIdAndBoardId(Board board) {
+		
+		return boardDao.selectListByUserIdAndBoardId(board);
+	}
+	
 	// 마이페이지 게시글 select
 	public List<Board> getListByUserId(Board board) {
 

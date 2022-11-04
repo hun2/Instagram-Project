@@ -28,6 +28,9 @@ public interface BoardDAO {
 			@Param("boardId") int boardId, 
 			@Param("userId") String userId);
 	
+	//마이페이지 글누르면 가져오는것 
+	
+	public List<Board> selectListByUserIdAndBoardId(Board board);
 	
 	//마이페이지 글 목록(select)
 	public List<Board> selectListByUserId(Board board);

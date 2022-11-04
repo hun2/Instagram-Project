@@ -86,7 +86,7 @@
 			<div class="bodycontainer">
 				<c:forEach items="${boardList}" var="board">
 					<div class="item">
-						<img src="${board.boardImage}" class="bodyimg">
+						<img src="${board.boardImage}" class="bodyimg" data-id="${board.boardId}">
 					</div>
 				</c:forEach>
 			</div>
@@ -98,10 +98,6 @@
 		<div class="modal_body">
 			<span id="upload">게시글 업로드</span>
 			<div class="uploadinfo">
-				<!-- <div class="user">
-           	 	<div class="profile-pic"><img src="/img/park.jpg" alt=""></div>
-          	 	<p class="username">text</p>
-             </div> -->
 				<div class="uploadprofile-pic">
 					<img src="${sessionScope.loginUser.profilePhoto}" alt="">
 				</div>
@@ -159,7 +155,44 @@
 			</div>
 		</div>
 	</div>
-
+	
+	<div class="modal3">
+		<div class="modal3_body">
+			<div class="modal3_left">
+				<img src="/img/kim.jpg" class="modal3_leftimg">			
+			</div>
+			<div class="modal3_right">
+				<div class="info">
+					<div class="user">
+						<div class="profile-pic">
+							<img src="${sessionScope.loginUser.profilePhoto}" alt="">
+						</div>
+						<p class="username">${sessionScope.loginUser.uid}</p>
+					</div>
+				</div>
+				<div class="post-content">
+					<div class="info2">
+						<p class="likes">10 likes</p>
+						<div class="description">
+							<div class="profile-pic2">
+								<img src="${sessionScope.loginUser.profilePhoto}" alt="">
+							</div>
+							<span class="descriptionId">${sessionScope.loginUser.uid} </span> 
+							<span class="content">게시글의 content 내용 가져와야함</span>
+						</div>
+					</div>
+					<div class="sample">
+					
+					
+					</div>
+				</div>
+				<div class="post-content-comment">
+					<input type="text" placeholder="댓글달기.." class="content-commnet">
+					<a class="push" data-board-id="${List.board.boardId}">추가</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </body>
 <script type="text/javascript">
@@ -169,8 +202,11 @@
 	const body = document.querySelector('body');
 	const modal = document.querySelector('.modal');
 	const modal2 = document.querySelector('.modal2');
+	const modal3 = document.querySelector('.modal3');
 	const addPopup = document.querySelector('.add');
+	const boardListPopup = document.querySelector('.bodyimg');
 	const icon2 = document.querySelector('.icon2');
+	
 	
 	addPopup.addEventListener('click', () => {
 		modal.classList.toggle('show');
@@ -198,6 +234,15 @@
 	      modal2.classList.toggle('show');
 	    }
 	    if (!modal2.classList.contains('show')) {
+	        body.style.overflow = 'auto';
+	     }
+	});
+	
+	modal3.addEventListener('click', (event) => {
+	    if (event.target === modal3) {
+	      modal3.classList.toggle('show');
+	    }
+	    if (!modal3.classList.contains('show')) {
 	        body.style.overflow = 'auto';
 	     }
 	});
@@ -382,6 +427,44 @@
 	
 	
 	
+	//게시글 클릭시 모달창 및 게시글 상세보기
+	$('.bodyimg').on('click', function(){
+		var boardId = $(this).data('id');
+		
+		$.ajax({
+			type : "GET"
+			,url : "/main/my-list-click"
+			, data : {"boardId" : boardId}
+			, success : function(result){
+				$('.sample').children().remove();
+				
+				modal3.classList.toggle('show');
+				if (modal3.classList.contains('show')) {
+					body.style.overflow = "hidden";
+				}
+				var boardImage = result.myBoard[0].boardImage
+				var content = result.myBoard[0].content
+				
+				//이미지 변경
+				$('.modal3_leftimg').attr('src', boardImage);
+				
+				//글내용 변경
+				$('.content').text(content);
+				
+				//좋아요 갯수 변경
+				$('.likes').text(result.likeCount + "likes");
+				
+				
+				//댓글 리스트
+				var commentList = result.commentList
+				$.each(commentList, function(index, value){
+					$('.sample').append($( "<div>" + "<span class='spanid'>" + value.userId + "</span>"+ "<span>" + value.comment + "</span>" + "</div>"))
+				})
+				
+				
+			}
+		})
+	})
 	
 	
 	

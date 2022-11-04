@@ -25,11 +25,13 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.bo.BoardBO;
 import com.example.demo.bo.CommentBO;
 import com.example.demo.bo.FollowBO;
+import com.example.demo.bo.LikeBO;
 import com.example.demo.bo.TimeLineBO;
 import com.example.demo.bo.UserBO;
 import com.example.demo.common.SHA256;
 import com.example.demo.model.Board;
 import com.example.demo.model.CardView;
+import com.example.demo.model.Comment;
 import com.example.demo.model.Follow;
 import com.example.demo.model.User;
 
@@ -50,6 +52,9 @@ public class BoardController {
 
 	@Autowired
 	private FollowBO followBo;
+	
+	@Autowired
+	private LikeBO likeBo;
 
 	// 피드목록 - 접속
 	@GetMapping("/main/board-view")
@@ -57,10 +62,6 @@ public class BoardController {
 		User users = (User) session.getAttribute("loginUser");
 		String userId = users.getUid();
 
-		if (userId == null) {
-
-			return "redirect:/main/sign-in-view";
-		}
 
 		List<CardView> cardView = timeLineBo.generateCardList(userId);
 		model.addAttribute("cardList", cardView);
@@ -134,8 +135,6 @@ public class BoardController {
 		return result;
 	}
 
-	// 댓글 가져오기
-
 	// 마이페이지 - 접속
 	@GetMapping("/main/my-list")
 	public String my_list(HttpServletRequest request, Board board, Model model, Follow follow) {
@@ -162,7 +161,8 @@ public class BoardController {
 		int followedCount = followBo.CountFollowed(follow);
 		model.addAttribute("followCount", followCount);
 		model.addAttribute("followedCount", followedCount);
-
+		
+		
 		return "my_list";
 	}
 
@@ -190,9 +190,9 @@ public class BoardController {
 
 		return result;
 	}
-
-	// ----------------추후에 다시 해보기 게시글 수정
-	// ----------------게시글 본인이 올린 글만 수정이 되야함. 현재 모든글이 수정권한이 됨.
+	
+	
+	//게시글 수정
 	@PutMapping("/main/board-list-modify")
 	@ResponseBody
 	public Map<String, Object> update_board_list(Board board, @RequestParam(value="file", required = false) MultipartFile file, HttpSession session) {
@@ -336,7 +336,8 @@ public class BoardController {
 
 		return result;
 	}
-
+	
+	
 	@DeleteMapping("/main/board-delete")
 	@ResponseBody
 	public Map<String, Object> boardDelete(HttpSession session, Board board) {
@@ -356,6 +357,30 @@ public class BoardController {
 		
 		
 		return result;
+	}
+	
+	
+	//마이페이지 글 목록에서 글 하나 클릭시
+	@RequestMapping("/main/my-list-click")
+	@ResponseBody
+	public Map<String, Object> myListClick(HttpSession session, Board board) {
+		
+		User users = (User) session.getAttribute("loginUser");
+		String userId = users.getUid();
+		
+		
+		board.setUserId(userId);
+		Map<String, Object> result =  new HashMap<>();
+		List<Board> myBoard =  boardBo.getListByUserIdAndBoardId(board);
+		result.put("myBoard", myBoard);
+		
+		List<Comment> commentList =  commentBo.getMyCommentListByBoardId(board);
+		result.put("commentList", commentList);
+		
+		int likeCount = likeBo.getLikeCountByBoardId(board.getBoardId());
+		result.put("likeCount", likeCount);
+		return result;
+		
 	}
 
 }

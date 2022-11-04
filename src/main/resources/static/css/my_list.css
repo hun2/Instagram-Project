@@ -417,3 +417,185 @@ body{
     font-size: 14px;
     font-weight: 600;
 }
+
+
+/* 게시글 클릭시 미리보기 모달 */
+
+.modal3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+.modal3.show {
+	display: block;
+}
+
+
+.modal3_body {
+	
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 1000px;
+  height: 600px;
+  background-color: black;
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+	
+  transform: translateX(-50%) translateY(-50%);
+  display : flex;
+}
+
+.modal3_left {
+	width: 600px;
+}
+.modal3_right {
+	width: 400px;
+	background-color: white;
+}
+
+.modal3_leftimg {
+	width : 600px;
+	height : 600px;
+	object-fit: cover;
+	padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+.info {
+	 width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+   	border-bottom:  1px solid #dfdfdf;
+}
+
+
+
+.info .username{
+    width: auto;
+    font-weight: bold;
+    color: #000;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.info .options{
+    height: 10px;
+    cursor: pointer;
+}
+
+.info .user{
+    display: flex;
+    align-items: center;
+}
+
+.info .profile-pic{
+    height: 30px;
+    width: 30px;
+    padding: 0;
+    background: none;
+}
+
+.info .profile-pic img{
+    border: none;
+}
+
+.post-content {
+	height : 500px;
+	border-bottom:  1px solid #dfdfdf;
+}
+
+.post-content-comment{
+	height: 30px;
+	display : flex;
+	justify-content: center;
+	align-items: center;
+	padding-left: 20px;
+	padding-top: 10px;
+}
+
+.info2 {
+	 width: 100%;
+    height: 50px;
+    border-bottom:  1px solid #dfdfdf;
+}
+
+
+.content-commnet{
+	border: none;
+	width: 100%;
+}
+.profile-pic2 {
+	 height: 30px;
+    width: 30px;
+    padding: 0;
+    background: none;
+}
+
+.profile-pic2 img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+.likes{
+	margin-top: 10px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+
+.description{
+    font-size: 12px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    
+    
+}
+
+.description .profile-pic2 {
+	margin-left: 20px;
+}
+.description span{
+    margin-right: 10px;
+    margin-left: 10px;	
+}
+.descriptionId {
+	font-weight: bold;
+}
+
+.sample {
+	margin: 10px 0;
+    font-size: 12px;
+    line-height: 20px;
+    align-items: center;
+}
+
+.sample span{
+	
+    margin-right: 10px;
+    margin-left: 25px;	
+}
+
+.spanid {
+	font-weight: bold;
+}
+
+.push {
+	color: rgb(0, 162, 255);
+	display: block;
+	width: 40px;
+}

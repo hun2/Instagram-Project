@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.model.Board;
 import com.example.demo.model.Comment;
 
 @Repository
@@ -17,6 +18,7 @@ public interface CommentDAO {
 	
 	public List<Comment> selectCommentListByBoardId(int boardId);
 	
+	public List<Comment> selectMyCommentListByBoardId(Board board);
 	
 	public int selectCommentListCountByBoardId(int boardId);
 	

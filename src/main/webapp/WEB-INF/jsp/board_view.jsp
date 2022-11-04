@@ -87,16 +87,14 @@
 						<div class="post-content">
 							<div class="reaction-wrapper">
 								<c:if test="${List.filledLike eq true }">
-									<img src="/img/liked.png" class="icon" alt=""
-										data-id="${List.board.boardId}">
+									<img src="/img/liked.png" class="icon" alt="" data-id="${List.board.boardId}">
 								</c:if>
 								<c:if test="${List.filledLike eq false }">
-									<img src="/img/like.png" class="icon" alt=""
-										data-id="${List.board.boardId}">
+									<img src="/img/like.png" class="icon" alt="" data-id="${List.board.boardId}">
 								</c:if>
-								<img src="/img/comment.PNG" class="icon" alt=""> <img
-									src="/img/send.PNG" class="icon" alt=""> <img
-									src="/img/save.PNG" class="save icon" alt="">
+								<img src="/img/comment.PNG" class="icon" alt=""> 
+								<img src="/img/send.PNG" class="icon" alt=""> 
+								<img src="/img/save.PNG" class="save icon" alt="">
 							</div>
 							<p class="likes">${List.likeCount}likes</p>
 							<p class="description">
